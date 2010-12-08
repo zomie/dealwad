@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<table xmlns="http://query.yahooapis.com/v1/schema/table.xsd">
+  <meta>
+    <author>dealwad</author>
+  </meta>
+  <bindings>
+    <select produces="XML" itemPath="">
+      <inputs>
+        <key id="feeds" type="xs:string" paramType="variable" required="true"/>
+      </inputs>
+        <execute><![CDATA[
+          var feedlist = feeds.split(',');
+          var out = <feeds/>;
+          for(var i=0,j=feedlist.length;i<j;i++){
+            var f = feedlist[i];
+            var q = 'select channel.title,channel.link,channel.item.title,channel.item.link,channel.item.description,channel.item.pubDate';
+            q += ' from xml where url='+f;
+            var content = y.query(q);
+            feed = <feed/>;
+
+            feed.title = content.results.rss[0].channel.title;
+            feed.link = content.results.rss[0].channel.link;
+            if(content.results.rss.length < 25) {
+            	for each(rss in content.results.rss){
+		   feed.item += <item>{rss.channel.item.title}{rss.channel.item.link}{rss.channel.item.date}{rss.channel.item.description}{rss.channel.item.pubDate}</item>;
+            	}
+         
+            }
+
+            out.feed += feed;
+          }
+          response.object = out;
+        ]]></execute>
+    </select>
+  </bindings>
+</table>
