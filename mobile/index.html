@@ -5,14 +5,40 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="css/style.css">
 
 </head>
 
 <body>
 
-  <div id="container">
+  <div id="container" class="viewHome">
     <header>
+		<div class="nav">
+			<button class="search">search</button>
+			<button class="setting">settings</button>
+			<button class="fav">favorites</button>
+			<button class="about">about</button>
+
+		</div>
+		<div class="subnav">
+			<button class="back">back</button>
+			<button class="fav">favorite</button>
+		</div>
+		<div class="settingsnav">
+			<button class="back">back</button>
+			<button class="search">search</button>
+			<button class="fav">favorites</button>
+			<button class="about">about</button>
+		</div>
+    </header>
+	<div id="search">
+		Enter a search term:<input type="text"><button>GO</button>
+	</div>
+    <div id="main">
+		<img src="images/loader.gif">
+    </div>
+    <div id="settings">
+		<p>Select where you want your deals to come from:</p>
 		<button value="http://www.techbargains.com/rss.xml">techbargains</button>
 		<button value="http://feeds.feedburner.com/SlickdealsnetFP?format=xml">slickdeals</button>
 		<button value="http://www.woot.com/blog/rss.aspx">woot</button>
@@ -21,14 +47,26 @@
 		<button value="http://www.deals2buy.com/rssgen/alldeals.xml">deals2buy</button>
 		<button value="http://www.spoofee.com/rss.php">spoofee</button>
 		<button value="http://www.buxr.com/rssfeed">buxr</button>
-    </header>
-
-    <div id="main">
-
-    </div>
+	</div>
 
     <footer>
+		<div class="nav">
+			<button class="search">search</button>
+			<button class="setting">settings</button>
+			<button class="fav">favorites</button>
+			<button class="about">about</button>
 
+		</div>
+		<div class="subnav">
+			<button class="back">back</button>
+			<button class="fav">favorite</button>
+		</div>
+		<div class="settingsnav">
+			<button class="back">back</button>
+			<button class="search">search</button>
+			<button class="fav">favorites</button>
+			<button class="about">about</button>
+		</div>
     </footer>
   </div>
   <script src="http://yui.yahooapis.com/3.2.0/build/yui/yui-min.js"></script>

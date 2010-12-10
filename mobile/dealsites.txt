@@ -21,3 +21,10 @@ http://www.spoofee.com/rss.php
 
 http://www.buxr.com/
 http://www.buxr.com/rssfeed
+
+YQL:
+google product search
+select * from json where url="http://pipes.yahoo.com/pipes/pipe.run?_id=880f687e42a6279d3f0b225128dd09e5&_render=json&q=frog"
+
+feed search:
+select * from json where url="http://pipes.yahoo.com/pipes/pipe.run?_id=2dd4b75f232086fc9882868801b97a98&_render=json&s=usb&url6=http%3A%2F%2Fwww.techbargains.com%2Frss.xml"
