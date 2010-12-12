@@ -33,12 +33,16 @@ html{color:#000;background:#FFF;}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pr
 button {
 	cursor:pointer;
 }
-.viewHome #settings, .viewHome .subnav, .viewHome .settingsnav, .viewHome .description{
+.viewHome #settings, .viewHome .subnav, .viewHome .settingsnav, .viewHome .description, .viewHome .searchnav, .viewHome #search{
 	display:none;
 }
-.viewItem #settings, .viewItem .settingsnav, .viewItem .nav, .viewItem .headline, .viewItem #search {
+.viewItem #settings, .viewItem .settingsnav, .viewItem .nav, .viewItem .headline, .viewItem #search, .viewItem .searchnav {
 	display:none;
 }
-.viewSettings .subnav, .viewSettings .nav, .viewSettings #main, .viewSettings #search {
+.viewSettings .subnav, .viewSettings .nav, .viewSettings #main, .viewSettings #search, .viewSettings .searchnav {
+	display:none;
+}
+
+.viewSearch #settings,.viewSearch .subnav, .viewSearch .nav, .viewSearch .settingsnav {
 	display:none;
 }

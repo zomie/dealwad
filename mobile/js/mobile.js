@@ -1,7 +1,8 @@
 YUI().use("yql", "node", function(Y) {
     var currentItem;
     var res = Y.one('#main'),
-    sources = Y.all('#settings button');
+    sources = Y.all('#settings button'),
+    searchField = document.getElementById('searchFld');
     var settingsView = function (e) {
     	Y.one('#container').setAttribute('class','viewSettings');
     };
@@ -38,16 +39,42 @@ YUI().use("yql", "node", function(Y) {
     
     var normalView = function (e) {
     	Y.one('#container').setAttribute('class','viewHome');
-        currentItem.parentNode.nextSibling.setAttribute('style','display:none');
+    	if(currentItem != null) {
+    	    currentItem.parentNode.nextSibling.setAttribute('style','display:none');
+    	}
+    	//make sure the search field gets reset and reload the latest feed
+    	searchField.value = '';
+    	loadFeed();
+
         Y.all('compare').remove;
+    };
+    var searchView = function (e) {
+        Y.one('#container').setAttribute('class','viewSearch');
+    };
+    var search = function (e) {
+    	if (searchField.value == '') {
+    	    alert('Please fill out the search field');
+    	} else {
+    	    loadFeed();
+    	}
     };
     Y.on("click", changeFeed, ["#settings button"]);
     Y.on("click", changeView, [".headline"]);
     Y.on("click", normalView, [".back"]);
     Y.on("click", settingsView, [".setting"]);
-
+    Y.on("click", searchView, [".search"]);
+    Y.on("click", search, ["#searchBtn"]);
+    
+    
     var loadFeed = function () {
-        var srcStr = 'http://pipes.yahoo.com/zomie/dealwad?_render=json';
+    	res.set('innerHTML', '<img src="images/loader.gif">');
+    	//run search
+    	if (searchField.value == '') {
+    	     var srcStr = 'http://pipes.yahoo.com/zomie/dealwad?_render=json';
+    	} else  {
+    	     var srcStr = 'http://pipes.yahoo.com/pipes/pipe.run?_id=2dd4b75f232086fc9882868801b97a98&_render=json&s=' + searchField.value;
+    	}
+        
         for(var x = 0;x<=(sources._nodes.length - 1);x++) {
             if (sources._nodes[x].getAttribute('class')!='off') {
     	       srcStr += '&url' + x + '=' + sources._nodes[x].value;
@@ -59,31 +86,33 @@ YUI().use("yql", "node", function(Y) {
       	    //console.log(mixedResults);
             for (var y = 0;y<=(mixedResults.length - 1);y++) {
             	//todo: factor out time logic or find a better way to do this crap
-            	var hour = mixedResults[y]['y:published'].hour;
-            	if (hour < 10) {
-            	    hour = '0' + hour;
-            	} else if (hour > 12) {
-            	    hour = hour - 12;
-            	    if (hour < 10) {
-            	    	hour = '0' + hour;
-            	    }
-            	}
-            	var minute = mixedResults[y]['y:published'].minute;
-            	if (minute < 10) {
-            	   minute = '0' + minute;
-            	}
-            	var ampm = 'am';
-            	if (mixedResults[y]['y:published'].hour > 12) {
-            	   ampm = 'pm';
-            	}
+		try{
+			var hour = mixedResults[y]['y:published'].hour;
+			if (hour < 10) {
+			    hour = '0' + hour;
+			} else if (hour > 12) {
+			    hour = hour - 12;
+		 		if (hour < 10) {
+			    		hour = '0' + hour;
+				}
+			}
+            		var minute = mixedResults[y]['y:published'].minute;
+            		if (minute < 10) {
+            		   minute = '0' + minute;
+            		}
+            		var ampm = 'am';
+            		if (mixedResults[y]['y:published'].hour > 12) {
+            		   ampm = 'pm';
+            		}
             	
-       		var title = mixedResults[y].title,
-       		    pubDate = hour + ':' + minute + ampm + ' ' + mixedResults[y]['y:published'].month + '/' + mixedResults[y]['y:published'].day + '/' + mixedResults[y]['y:published'].year,
-       		    description = mixedResults[y].description,
-       		    link = mixedResults[y].link;
-       		if (title != null) {
-       	            html += '<div><div class="headline"><h4>' + title + "<span>" + pubDate + '</span></h4></div><div class="description"><h4><a href="' + link + '">' + title + "</a><span>" + pubDate + "</span></h4>" + description + '</div></div>';
-            	}	
+       			var title = mixedResults[y].title,
+       		 	   pubDate = hour + ':' + minute + ampm + ' ' + mixedResults[y]['y:published'].month + '/' + mixedResults[y]['y:published'].day + '/' + mixedResults[y]['y:published'].year,
+       		  	  description = mixedResults[y].description,
+       		  	  link = mixedResults[y].link;
+       			if (title != null) {
+       	         	   html += '<div><div class="headline"><h4>' + title + "<span>" + pubDate + '</span></h4></div><div class="description"><h4><a href="' + link + '">' + title + "</a><span>" + pubDate + "</span></h4>" + description + '</div></div>';
+            		}
+            	} catch(e){}
             }
          res.set('innerHTML', html);
         });

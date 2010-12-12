@@ -4,6 +4,7 @@
   <title>Dealwad.com</title>
   <meta name="description" content="">
   <meta name="author" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 
   <link rel="stylesheet" href="css/style.css">
 
@@ -30,9 +31,12 @@
 			<button class="fav">favorites</button>
 			<button class="about">about</button>
 		</div>
+		<div class="searchnav">
+			<button class="back">back</button>
+		</div>
     </header>
 	<div id="search">
-		Enter a search term:<input type="text"><button>GO</button>
+		<label for="searchFld">Enter a search term:</label><input type="text" id="searchFld"><button id="searchBtn">Search!</button>
 	</div>
     <div id="main">
 		<img src="images/loader.gif">
@@ -66,6 +70,9 @@
 			<button class="search">search</button>
 			<button class="fav">favorites</button>
 			<button class="about">about</button>
+		</div>
+		<div class="searchnav">
+			<button class="back">back</button>
 		</div>
     </footer>
   </div>
