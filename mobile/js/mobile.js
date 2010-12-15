@@ -1,8 +1,9 @@
-YUI().use("yql", "node", function(Y) {
+YUI().use("yql", "node", "json-stringify", "json-parse", function(Y) {
     var currentItem;
     var res = Y.one('#main'),
     sources = Y.all('#settings button'),
-    searchField = document.getElementById('searchFld');
+    searchField = document.getElementById('searchFld'),
+    favoriteArea = document.getElementById('favorites');
     var settingsView = function (e) {
     	Y.one('#container').setAttribute('class','viewSettings');
     };
@@ -26,8 +27,11 @@ YUI().use("yql", "node", function(Y) {
       	        productCt = 0;
       	    //console.log(extractedProducts);
       	    for (z in extractedProducts) {
-      	    	productCt++;
-      	        productList += '<button class="">' + extractedProducts[z] + '</button>';
+      	    	//only show product results higher then 3 characters
+      	    	if(extractedProducts[z].length > 2) {
+      	    	     productCt++;
+      	             productList += '<button class="">' + extractedProducts[z] + '</button>';
+      	        }
       	    }
       	    	productList += "</div>"; 
       	    if(productCt > 0) {
@@ -58,14 +62,33 @@ YUI().use("yql", "node", function(Y) {
     	    loadFeed();
     	}
     };
+    var favoritesView = function (e) {
+    	Y.one('#container').setAttribute('class','viewFavorites');
+    
+    };
+    var aboutView = function (e) {
+        Y.one('#container').setAttribute('class','viewAbout');
+        
+    };
+    var favoriteItem = function (e) {
+        favoriteArea.innerHTML += '<div>' + currentItem.parentNode.parentNode.innerHTML + '</div>';
+        sessionStorage.setItem('favorites',Y.JSON.stringify(favoriteArea.innerHTML));
+    };
     Y.on("click", changeFeed, ["#settings button"]);
-    Y.on("click", changeView, [".headline"]);
+    //Y.delegate("click", changeView,"#main",
+    
     Y.on("click", normalView, [".back"]);
     Y.on("click", settingsView, [".setting"]);
     Y.on("click", searchView, [".search"]);
     Y.on("click", search, ["#searchBtn"]);
-    
-    
+    Y.on("click", favoritesView, ['.fav']);
+    Y.on("click", aboutView, ['.about']);
+    Y.on("click", favoriteItem, ['.favorite']);
+    var loadFavs = function () {
+    	if(sessionStorage.getItem('favorites')){
+    	     favoriteArea.innerHTML = Y.JSON.parse(sessionStorage.getItem('favorites'));
+    	}
+    }();
     var loadFeed = function () {
     	res.set('innerHTML', '<img src="images/loader.gif">');
     	//run search
@@ -110,11 +133,12 @@ YUI().use("yql", "node", function(Y) {
        		  	  description = mixedResults[y].description,
        		  	  link = mixedResults[y].link;
        			if (title != null) {
-       	         	   html += '<div><div class="headline"><h4>' + title + "<span>" + pubDate + '</span></h4></div><div class="description"><h4><a href="' + link + '">' + title + "</a><span>" + pubDate + "</span></h4>" + description + '</div></div>';
+       	         	   html += '<div><div class="headline"><h4>' + title + '</h4></div><div class="description"><h4><a href="' + link + '">' + title + "</a><span>" + pubDate + "</span></h4>" + description + '</div></div>';
             		}
             	} catch(e){}
             }
          res.set('innerHTML', html);
+         Y.on("click", changeView, ["#main .headline"]);
         });
     };
     

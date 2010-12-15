@@ -33,16 +33,22 @@ html{color:#000;background:#FFF;}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pr
 button {
 	cursor:pointer;
 }
-.viewHome #settings, .viewHome .subnav, .viewHome .settingsnav, .viewHome .description, .viewHome .searchnav, .viewHome #search{
+.viewHome #settings, .viewHome .subnav, .viewHome .settingsnav, .viewHome .description, .viewHome .searchnav, .viewHome #search, .viewHome #favorites, .viewHome .favoritesnav, .viewHome .aboutnav, .viewHome #about {
 	display:none;
 }
-.viewItem #settings, .viewItem .settingsnav, .viewItem .nav, .viewItem .headline, .viewItem #search, .viewItem .searchnav {
+.viewItem #settings, .viewItem .settingsnav, .viewItem .nav, .viewItem .headline, .viewItem #search, .viewItem .searchnav, .viewItem #favorites, .viewItem .favoritesnav, .viewItem .aboutnav, .viewItem #about {
 	display:none;
 }
-.viewSettings .subnav, .viewSettings .nav, .viewSettings #main, .viewSettings #search, .viewSettings .searchnav {
+.viewSettings .subnav, .viewSettings .nav, .viewSettings #main, .viewSettings #search, .viewSettings .searchnav, .viewSettings #favorites, .viewSettings .favoritesnav, .viewSettings .aboutnav, .viewSettings #about {
+	display:none;
+}
+.viewSearch #settings,.viewSearch .subnav, .viewSearch .nav, .viewSearch .settingsnav, .viewSearch #favorites, .viewSearch .favoritesnav, .viewSearch .aboutnav, .viewSearch #about {
+	display:none;
+}
+.viewFavorites #settings, .viewFavorites .subnav, .viewFavorites .nav, .viewFavorites #main .viewFavorites .nav, .viewFavorites .settingsnav, .viewFavorites #search, .viewFavorites .searchnav, .viewFavorites #main, .viewFavorites .aboutnav, .viewFavorites #about {
+	display:none;
+}
+.viewAbout #settings, .viewAbout .subnav, .viewAbout .nav, .viewAbout #main .viewAbout .nav, .viewAbout .settingsnav, .viewAbout #search, .viewAbout .searchnav, .viewAbout #main, .viewAbout #favorites, .viewAbout .favoritesnav{
 	display:none;
 }
 
-.viewSearch #settings,.viewSearch .subnav, .viewSearch .nav, .viewSearch .settingsnav {
-	display:none;
-}
