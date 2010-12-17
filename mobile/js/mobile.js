@@ -30,12 +30,12 @@ YUI().use("yql", "node", "json-stringify", "json-parse", function(Y) {
       	    	//only show product results higher then 3 characters
       	    	if(extractedProducts[z].length > 2) {
       	    	     productCt++;
-      	             productList += '<button class="">' + extractedProducts[z] + '</button>';
+      	             productList += '<button class="productSearch">' + extractedProducts[z] + '</button>';
       	        }
       	    }
       	    	productList += "</div>"; 
       	    if(productCt > 0) {
-      	    	target.parentNode.nextSibling.innerHTML+=productList;
+      	    	target.parentNode.nextSibling.innerHTML+=productList+'<div></div>';
       	    }
       	    
         });
@@ -74,9 +74,28 @@ YUI().use("yql", "node", "json-stringify", "json-parse", function(Y) {
         favoriteArea.innerHTML += '<div>' + currentItem.parentNode.parentNode.innerHTML + '</div>';
         sessionStorage.setItem('favorites',Y.JSON.stringify(favoriteArea.innerHTML));
     };
-    Y.on("click", changeFeed, ["#settings button"]);
-    //Y.delegate("click", changeView,"#main",
-    
+    var productSearch = function(e) {
+    	var productCont = e.target._node.parentNode.nextSibling;
+    	console.log(productCont);
+    	//productCont.innerHTML = ;
+    	var srcStr = 'http://pipes.yahoo.com/pipes/pipe.run?_id=880f687e42a6279d3f0b225128dd09e5&_render=json&q=' + escape(e.target._node.innerHTML);
+    	Y.YQL('select * from json where url="'+srcStr+'"', function(r) {
+      	    console.log(r);
+      	    var html = '<ul>';
+      	    var items = r.query.results.json.value.items;
+      	    for (var y = 0;y<=(items.length - 1);y++) {
+		try{
+		    if (items[y]['g:price']) {
+		        html +='<li><a href="' + items[y].link + '">' + items[y].title + ' (' + items[y]['g:price'] + ')</a></li>';
+		    }
+		
+		} catch (e){}
+	    	html += '</ul>';
+	    }
+	    productCont.innerHTML = html;
+      	});
+    };
+    Y.one('#main').delegate('click', productSearch, '.productSearch');    
     Y.on("click", normalView, [".back"]);
     Y.on("click", settingsView, [".setting"]);
     Y.on("click", searchView, [".search"]);
@@ -84,11 +103,11 @@ YUI().use("yql", "node", "json-stringify", "json-parse", function(Y) {
     Y.on("click", favoritesView, ['.fav']);
     Y.on("click", aboutView, ['.about']);
     Y.on("click", favoriteItem, ['.favorite']);
-    var loadFavs = function () {
+    /*var loadFavs = function () {
     	if(sessionStorage.getItem('favorites')){
     	     favoriteArea.innerHTML = Y.JSON.parse(sessionStorage.getItem('favorites'));
     	}
-    }();
+    }();*/
     var loadFeed = function () {
     	res.set('innerHTML', '<img src="images/loader.gif">');
     	//run search
