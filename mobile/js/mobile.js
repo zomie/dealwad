@@ -103,11 +103,11 @@ YUI().use("yql", "node", "json-stringify", "json-parse", function(Y) {
     Y.on("click", favoritesView, ['.fav']);
     Y.on("click", aboutView, ['.about']);
     Y.on("click", favoriteItem, ['.favorite']);
-    /*var loadFavs = function () {
+    var loadFavs = function () {
     	if(sessionStorage.getItem('favorites')){
     	     favoriteArea.innerHTML = Y.JSON.parse(sessionStorage.getItem('favorites'));
     	}
-    }();*/
+    }();
     var loadFeed = function () {
     	res.set('innerHTML', '<img src="images/loader.gif">');
     	//run search
