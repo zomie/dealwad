@@ -13,45 +13,49 @@
 <body>
 
   <div id="container" class="viewHome">
-    <header>
-		<div class="nav">
-			<button class="search">search</button>
-			<button class="setting">settings</button>
-			<button class="fav">favorites</button>
-			<button class="about">about</button>
+    <header class="cls">
+		<ul class="nav">
+			<li><a href="#home" class="home"><span></span>home</a></li>
+			<li><a href="#search" class="search"><span></span>search</a></li>
+			<li><a href="#setting" class="setting"><span></span>settings</a>v
+			<li><a href="#fav" class="fav"><span></span>favorites</a></li>
+			<li><a href="#about" class="about"><span></span>about</a></li>
 
-		</div>
+		</ul>
 		<div class="subnav">
-			<button class="back">back</button>
-			<button class="favorite">favorite</button>
+			<a href="#" class="back"><span></span>back</a>
+			<a href="" class="favorite"><span></span>favorite</button>
 		</div>
 		<div class="settingsnav">
-			<button class="back">back</button>
+			<a href="#" class="back"><span></span>back</a>
 			<h1>Settings</h1>
 		</div>
 		<div class="searchnav">
-			<button class="back">back</button>
+			<a href="#" class="back"><span></span>back</a>
 			<h1>Search</h1>
 		</div>
 		<div class="favoritesnav">
-			<button class="back">back</button>
+			<a href="#" class="back"><span></span>back</a>
 			<h1>Favorites</h1>
 		</div>
 		<div class="aboutnav">
-			<button class="back">back</button>
+			<a href="#" class="back"><span></span>back</a>
 			<h1>About</h1>
 		</div>
     </header>
 	<div id="search">
+		<a name="search"></a>
 		<label for="searchFld">Enter a search term:</label><input type="text" id="searchFld"><button id="searchBtn">Search!</button>
 	</div>
     <div id="main">
 		<img src="images/loader.gif">
     </div>
     <div id="favorites">
+    	<a name="#fav"></a>
     	<p>It doesn't look like you have any favorites saved.</p>
     </div>
     <div id="about">
+    	<a name="#about"></a>
     	<p>Dealwad is in short a deals application.  WTF makes it different? We don't do ads, it is a completely free app in every sense of the word.</p>
     	<p>If you would like to get in contact with the creators of this app please drop us a line below:</p>
     	<form>
@@ -67,6 +71,7 @@
  		</form>
     </div>
     <div id="settings">
+    	<a name="setting"></a>
 		<p>Select where you want your deals to come from:</p>
 		<button value="http://www.techbargains.com/rss.xml">techbargains</button>
 		<button value="http://feeds.feedburner.com/SlickdealsnetFP?format=xml">slickdeals</button>
@@ -80,30 +85,30 @@
 
     <footer>
 		<div class="nav">
-			<button class="search">search</button>
-			<button class="setting">settings</button>
-			<button class="fav">favorites</button>
-			<button class="about">about</button>
+			<a href="#search" class="search">search</a>
+			<a href="#setting" class="setting">settings</a>
+			<a href="#fav" class="fav">favorites</a>
+			<a href="#about" class="about">about</a>
 
 		</div>
 		<div class="subnav">
-			<button class="back">back</button>
-			<button class="favorites">favorite</button>
+			<a href="/" class="back">back</a>
+			<button class="favorite">favorite</button>
 		</div>
 		<div class="settingsnav">
-			<button class="back">back</button>
+			<a href="/" class="back">back</a>
 			<h1>Settings</h1>
 		</div>
 		<div class="searchnav">
-			<button class="back">back</button>
+			<a href="/" class="back">back</a>
 			<h1>Search</h1>
 		</div>
 		<div class="favoritesnav">
-			<button class="back">back</button>
+			<a href="/" class="back">back</a>
 			<h1>Favorites</h1>
 		</div>
 		<div class="aboutnav">
-			<button class="back">back</button>
+			<a href="/" class="back">back</a>
 			<h1>About</h1>
 		</div>
     </footer>

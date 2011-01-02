@@ -71,6 +71,8 @@ YUI().use("yql", "node", "json-stringify", "json-parse", function(Y) {
         
     };
     var favoriteItem = function (e) {
+    	e.preventDefault(); 
+    	alert('Saved Favorite');
         favoriteArea.innerHTML += '<div>' + currentItem.parentNode.parentNode.innerHTML + '</div>';
         sessionStorage.setItem('favorites',Y.JSON.stringify(favoriteArea.innerHTML));
     };
@@ -95,6 +97,20 @@ YUI().use("yql", "node", "json-stringify", "json-parse", function(Y) {
 	    productCont.innerHTML = html;
       	});
     };
+    /* getting around the droid's back button using hash urls */
+    var hashChange = function (e) {
+    	if(location.hash == ''){
+    	     normalView();
+    	} else if(location.hash == '#search') {
+    	     searchView();
+    	} else if(location.hash == '#about') {
+    	     aboutView();
+    	} else if(location.hash == '#setting') {
+    	     settingsView();
+    	} else if(location.hash == '#fav') {
+    	     favoritesView();
+    	}
+    };
     Y.one('#main').delegate('click', productSearch, '.productSearch');    
     Y.on("click", normalView, [".back"]);
     Y.on("click", settingsView, [".setting"]);
@@ -103,11 +119,12 @@ YUI().use("yql", "node", "json-stringify", "json-parse", function(Y) {
     Y.on("click", favoritesView, ['.fav']);
     Y.on("click", aboutView, ['.about']);
     Y.on("click", favoriteItem, ['.favorite']);
-    var loadFavs = function () {
+    window.addEventListener("hashchange", hashChange, false); 
+    /*var loadFavs = function () {
     	if(sessionStorage.getItem('favorites')){
     	     favoriteArea.innerHTML = Y.JSON.parse(sessionStorage.getItem('favorites'));
     	}
-    }();
+    }();*/
     var loadFeed = function () {
     	res.set('innerHTML', '<img src="images/loader.gif">');
     	//run search

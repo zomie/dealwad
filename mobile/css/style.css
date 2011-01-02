@@ -6,16 +6,47 @@ version: 3.2.0
 build: 2676
 */
 html{color:#000;background:#FFF;}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{margin:0;padding:0;}table{border-collapse:collapse;border-spacing:0;}fieldset,img{border:0;}address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal;}li{list-style:none;}caption,th{text-align:left;}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}q:before,q:after{content:'';}abbr,acronym{border:0;font-variant:normal;}sup{vertical-align:text-top;}sub{vertical-align:text-bottom;}input,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit;}input,textarea,select{*font-size:100%;}legend{color:#000;}
-
+body {
+	font-family: helvetica, arial sans-serif
+}
 .description {
 	display:none;
 }
+.cls:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+
 .headline {
 	border:1px solid #ccc;
 	margin:1px;
 	padding:3px 5px;
 	position:relative;
 	cursor:pointer;
+	background-image: -webkit-gradient(
+	    linear,
+	    left top,
+	    left bottom,
+	    color-stop(0, #FFFFFF),
+	    color-stop(1, #F2F2F2),
+	    color-stop(0.97, #14181B)
+	);
+	background-image: -moz-linear-gradient(
+	    center top,
+	    #FFFFFF 0%,
+	    #F2F2F2 100%,
+	    #14181B 97%
+	);
+
+
+}
+.nav li{
+	float:left;
+	width:19%;
 }
 .headline:hover {
 	background:#cdcdcd;
@@ -51,4 +82,73 @@ button {
 .viewAbout #settings, .viewAbout .subnav, .viewAbout .nav, .viewAbout #main .viewAbout .nav, .viewAbout .settingsnav, .viewAbout #search, .viewAbout .searchnav, .viewAbout #main, .viewAbout #favorites, .viewAbout .favoritesnav{
 	display:none;
 }
+header {
+	padding:1%;
+	display:block;
+	text-align:center;
+	background:#0f1316;
+}
+header h1 {
+	float: left;
+	font-size: 267%;
+    	padding: 6px;
+    	color:#85888d;
+    	text-shadow: #434549 1px 0;
+}
+header a {
+	float:left;
+	text-align:center;
+	font-size:78%;
+	padding: 0 1%;
+	color:#85888d;
+	text-decoration:none;
+	font-weight:bold;
+	
+}
 
+header a span {
+	display:block;
+	height: 52px;
+	width: 52px;
+	margin-bottom:2px
+}
+header a:hover {
+	color:#156025;
+}
+
+.home span{
+	background: url('../images/sprite2.png') 0px -3px no-repeat;
+}
+.setting span{
+	background: url('../images/sprite2.png') 0px -120px no-repeat;
+}
+.fav span{
+	background: url('../images/sprite2.png') 0px -181px no-repeat;
+}
+.favorite span{
+	background: url('../images/sprite2.png') 0px -353px no-repeat;
+}
+.about span{
+	background: url('../images/sprite2.png') 0px -241px no-repeat;
+}
+.search span{
+	background: url('../images/sprite2.png') 0px -62px no-repeat;
+}
+.home:hover span{
+	background: url('../images/sprite2.png') 0px -303px no-repeat;
+}
+.setting:hover span{
+	background: url('../images/sprite2.png') 0px -420px no-repeat;
+}
+.fav:hover span{
+	background: url('../images/sprite2.png') 0px -481px no-repeat;
+}
+.favorite:hover span{
+	background: url('../images/sprite2.png') 0px -353px no-repeat;
+}
+.about:hover span{
+	background: url('../images/sprite2.png') 0px -541px no-repeat;
+}
+.search:hover span{
+	background: url('../images/sprite2.png') 0px -362px no-repeat;
+}
