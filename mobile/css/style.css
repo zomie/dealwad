@@ -64,7 +64,10 @@ body {
 button {
 	cursor:pointer;
 }
-.viewHome #settings, .viewHome .subnav, .viewHome .settingsnav, .viewHome .description, .viewHome .searchnav, .viewHome #search, .viewHome #favorites, .viewHome .favoritesnav, .viewHome .aboutnav, .viewHome #about {
+.viewHome .subnav {
+	clear:left;
+}
+.viewHome #settings, .viewHome .settingsnav, .viewHome .description, .viewHome .searchnav, .viewHome #search, .viewHome #favorites, .viewHome .favoritesnav, .viewHome .aboutnav, .viewHome #about {
 	display:none;
 }
 .viewItem #settings, .viewItem .settingsnav, .viewItem .nav, .viewItem .headline, .viewItem #search, .viewItem .searchnav, .viewItem #favorites, .viewItem .favoritesnav, .viewItem .aboutnav, .viewItem #about {
@@ -88,18 +91,10 @@ header {
 	text-align:center;
 	background:#0f1316;
 }
-header h1 {
-	float: left;
-	font-size: 267%;
-    	padding: 6px;
-    	color:#85888d;
-    	text-shadow: #434549 1px 0;
-}
 header a {
 	float:left;
 	text-align:center;
 	font-size:78%;
-	padding: 0 1%;
 	color:#85888d;
 	text-decoration:none;
 	font-weight:bold;
@@ -112,8 +107,18 @@ header a span {
 	width: 52px;
 	margin-bottom:2px
 }
+.subnav a span {
+	height: 26px;
+	width: 26px;
+}
+.subnav li {
+	width:33%;
+	float:left;
+}
+
 header a:hover {
 	color:#156025;
+	text-decoration:underline;
 }
 
 .home span{
@@ -134,8 +139,11 @@ header a:hover {
 .search span{
 	background: url('../images/sprite2.png') 0px -62px no-repeat;
 }
-.home:hover span{
+.home:hover span, .viewHome .home span{
 	background: url('../images/sprite2.png') 0px -303px no-repeat;
+}
+.viewHome .home {
+	color:#156025;
 }
 .setting:hover span{
 	background: url('../images/sprite2.png') 0px -420px no-repeat;
@@ -151,4 +159,14 @@ header a:hover {
 }
 .search:hover span{
 	background: url('../images/sprite2.png') 0px -362px no-repeat;
+}
+
+#favorite span{
+	background: url('../images/sprite3.png') 0px 0px no-repeat;
+}
+#sms span{
+	background: url('../images/sprite3.png') 0px -31px no-repeat;
+}
+#email span{
+	background: url('../images/sprite3.png') 0px -63px no-repeat;
 }
