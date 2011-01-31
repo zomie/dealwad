@@ -74,8 +74,14 @@ body {
 }
 h4 {
 	font-size:111%;
-	padding:.5em;
+	padding:.6em;
 	color: #0F1316;
+}
+.headline img {
+	border:1px solid #ddd;
+	margin-right:0.5em;
+	float:left;
+	margin-top: -9px;
 }
 .description {
 	position:relative;

@@ -7,6 +7,23 @@ YUI().use("yql", "node", "json-stringify", "json-parse", function(Y) {
     var settingsView = function (e) {
     	Y.one('#container').setAttribute('class','viewSettings');
     };
+    var findImgSrc = function (markup) {
+    	var start = markup.indexOf('src=', 0);
+    	var startQuotes = start+4;
+    	start = start + 5;
+    	if(markup.charAt(startQuotes) == '"') {
+    	 	var end = markup.indexOf('"', start);
+	     	var newMarkup = markup.slice(start,end);
+    		return newMarkup;
+    	} else if (markup.charAt(startQuotes) == "'") {
+    		var end = markup.indexOf("'", start);
+		var newMarkup = markup.slice(start,end);
+    		return newMarkup;
+    	} else {
+    		return false;
+    	}
+    	
+    };
     var changeFeed = function (e) {
     	
     	Y.all('button').setAttribute('class','off');
@@ -115,11 +132,11 @@ YUI().use("yql", "node", "json-stringify", "json-parse", function(Y) {
     Y.on("click", search, ["#searchBtn"]);
     Y.on("click", favoriteItem, ['.favorite']);
     window.addEventListener("hashchange", hashChange, false); 
-    /*var loadFavs = function () {
+    var loadFavs = function () {
     	if(sessionStorage.getItem('favorites')){
     	     favoriteArea.innerHTML = Y.JSON.parse(sessionStorage.getItem('favorites'));
     	}
-    }();*/
+    }();
     var loadFeed = function () {
     	res.set('innerHTML', '<img src="images/loader.gif" id="loader">');
     	//run search
@@ -137,7 +154,6 @@ YUI().use("yql", "node", "json-stringify", "json-parse", function(Y) {
     	Y.YQL('select * from json where url="'+srcStr+'"', function(r) {
       	    var mixedResults = r.query.results.json.value.items;
       	    var html = '';
-      	    //console.log(mixedResults);
             for (var y = 0;y<=(mixedResults.length - 1);y++) {
             	//todo: factor out time logic or find a better way to do this crap
 		try{
@@ -164,9 +180,11 @@ YUI().use("yql", "node", "json-stringify", "json-parse", function(Y) {
        		  	  description = mixedResults[y].description,
        		  	  link = mixedResults[y].link;
        			if (title != null) {
-       	         	   html += '<div><div class="headline"><h4>' + title + '</h4></div><div class="description"><h4><a href="' + link + '">' + title + "</a><span>" + pubDate + "</span></h4>" + description + '</div></div>';
+       		           var img = findImgSrc(description);
+       	         	   html += '<div><div class="headline cls"><h4><img src="' + img + '" height="40" width="40">' + title + '</h4></div><div class="description"><h4><a href="' + link + '">' + title + "</a><span>" + pubDate + "</span></h4>" + description.replace(/<.*?>/g, '') + '<p><img src="' + img + '"></p></div></div>';
             		}
-            	} catch(e){}
+            	} catch(e){};
+            	
             }
          res.set('innerHTML', html);
          Y.on("click", changeView, ["#main .headline"]);
@@ -176,4 +194,3 @@ YUI().use("yql", "node", "json-stringify", "json-parse", function(Y) {
     loadFeed();
  
 });
-//+ link.match(/[\w\$\-\_\+\!\*]+\.([\w\$\-\_\+\!\*]+\.)*[\w\$\-\_\+\!\*]+[^\/]/)
