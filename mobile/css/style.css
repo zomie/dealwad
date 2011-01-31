@@ -9,6 +9,9 @@ html{color:#000;background:#FFF;}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pr
 body {
 	font-family: helvetica, arial sans-serif
 }
+#container {
+	margin-bottom:101px;
+}
 .description {
 	display:none;
 }
@@ -22,7 +25,7 @@ body {
 }
 
 .headline {
-	border:1px solid #ccc;
+	border-top:1px solid #ccc;
 	margin:1px;
 	padding:3px 5px;
 	position:relative;
@@ -32,13 +35,13 @@ body {
 	    left top,
 	    left bottom,
 	    color-stop(0, #FFFFFF),
-	    color-stop(1, #F2F2F2),
+	    color-stop(1, #F1F1F1),
 	    color-stop(0.97, #14181B)
 	);
 	background-image: -moz-linear-gradient(
 	    center top,
 	    #FFFFFF 0%,
-	    #F2F2F2 100%,
+	    #F1F1F1 100%,
 	    #14181B 97%
 	);
 
@@ -49,13 +52,31 @@ body {
 	width:19%;
 }
 .headline:hover {
-	background:#cdcdcd;
+	background-image: -webkit-gradient(
+	    linear,
+	    left top,
+	    left bottom,
+	    color-stop(0, #FFFFFF),
+	    color-stop(1, #F7F7F7),
+	    color-stop(0.97, #14181B)
+	);
+	background-image: -moz-linear-gradient(
+	    center top,
+	    #FFFFFF 0%,
+	    #F7F7F7 100%,
+	    #14181B 97%
+	);
 }
 .headline span, .description h4 span{
 	position:absolute;
 	right:.5%;
 	top:3px;
 	background:#fff;
+}
+h4 {
+	font-size:111%;
+	padding:.5em;
+	color: #0F1316;
 }
 .description {
 	position:relative;
@@ -67,22 +88,22 @@ button {
 .viewHome .subnav {
 	clear:left;
 }
-.viewHome #settings, .viewHome .settingsnav, .viewHome .description, .viewHome .searchnav, .viewHome #search, .viewHome #favorites, .viewHome .favoritesnav, .viewHome .aboutnav, .viewHome #about {
+.viewHome #settings, .viewHome .description, .viewHome .searchnav, .viewHome #search, .viewHome #favorites, .viewHome #about {
 	display:none;
 }
-.viewItem #settings, .viewItem .settingsnav, .viewItem .nav, .viewItem .headline, .viewItem #search, .viewItem .searchnav, .viewItem #favorites, .viewItem .favoritesnav, .viewItem .aboutnav, .viewItem #about {
+.viewItem #settings, .viewItem .headline, .viewItem #search, .viewItem #favorites, .viewItem #about {
 	display:none;
 }
-.viewSettings .subnav, .viewSettings .nav, .viewSettings #main, .viewSettings #search, .viewSettings .searchnav, .viewSettings #favorites, .viewSettings .favoritesnav, .viewSettings .aboutnav, .viewSettings #about {
+.viewSettings #main, .viewSettings #search, .viewSettings #favorites, .viewSettings #about {
 	display:none;
 }
-.viewSearch #settings,.viewSearch .subnav, .viewSearch .nav, .viewSearch .settingsnav, .viewSearch #favorites, .viewSearch .favoritesnav, .viewSearch .aboutnav, .viewSearch #about {
+.viewSearch #settings, .viewSearch #favorites, .viewSearch #about {
 	display:none;
 }
-.viewFavorites #settings, .viewFavorites .subnav, .viewFavorites .nav, .viewFavorites #main .viewFavorites .nav, .viewFavorites .settingsnav, .viewFavorites #search, .viewFavorites .searchnav, .viewFavorites #main, .viewFavorites .aboutnav, .viewFavorites #about {
+.viewFavorites #settings, .viewFavorites #main, .viewFavorites #search, .viewFavorites #main, .viewFavorites #about {
 	display:none;
 }
-.viewAbout #settings, .viewAbout .subnav, .viewAbout .nav, .viewAbout #main .viewAbout .nav, .viewAbout .settingsnav, .viewAbout #search, .viewAbout .searchnav, .viewAbout #main, .viewAbout #favorites, .viewAbout .favoritesnav{
+.viewAbout #settings, .viewAbout #main, .viewAbout #search, .viewAbout #main, .viewAbout #favorites{
 	display:none;
 }
 header {
@@ -90,6 +111,10 @@ header {
 	display:block;
 	text-align:center;
 	background:#0f1316;
+	width:100%;
+	position:fixed;
+	bottom:0;
+	z-index:2;
 }
 header a {
 	float:left;
@@ -139,27 +164,27 @@ header a:hover {
 .search span{
 	background: url('../images/sprite2.png') 0px -62px no-repeat;
 }
+.viewHome .home, .viewSettings .setting, .viewSearch .search, .viewFavorites .fav, .viewAbout .about {
+	color:#156025;
+}
 .home:hover span, .viewHome .home span{
 	background: url('../images/sprite2.png') 0px -303px no-repeat;
 }
-.viewHome .home {
-	color:#156025;
-}
-.setting:hover span{
+
+.setting:hover span, .viewSettings .setting span{
 	background: url('../images/sprite2.png') 0px -420px no-repeat;
 }
-.fav:hover span{
+.fav:hover span, .viewFavorites .fav span{
 	background: url('../images/sprite2.png') 0px -481px no-repeat;
 }
-.favorite:hover span{
-	background: url('../images/sprite2.png') 0px -353px no-repeat;
-}
-.about:hover span{
+
+.about:hover span, .viewAbout .about span{
 	background: url('../images/sprite2.png') 0px -541px no-repeat;
 }
-.search:hover span{
+.search:hover span, .viewSearch .search span{
 	background: url('../images/sprite2.png') 0px -362px no-repeat;
 }
+
 
 #favorite span{
 	background: url('../images/sprite3.png') 0px 0px no-repeat;

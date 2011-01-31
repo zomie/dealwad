@@ -78,7 +78,6 @@ YUI().use("yql", "node", "json-stringify", "json-parse", function(Y) {
     };
     var productSearch = function(e) {
     	var productCont = e.target._node.parentNode.nextSibling;
-    	console.log(productCont);
     	//productCont.innerHTML = ;
     	var srcStr = 'http://pipes.yahoo.com/pipes/pipe.run?_id=880f687e42a6279d3f0b225128dd09e5&_render=json&q=' + escape(e.target._node.innerHTML);
     	Y.YQL('select * from json where url="'+srcStr+'"', function(r) {
@@ -99,7 +98,7 @@ YUI().use("yql", "node", "json-stringify", "json-parse", function(Y) {
     };
     /* getting around the droid's back button using hash urls */
     var hashChange = function (e) {
-    	if(location.hash == ''){
+    	if(location.hash == '' || location.hash == '#home'){
     	     normalView();
     	} else if(location.hash == '#search') {
     	     searchView();
@@ -112,12 +111,8 @@ YUI().use("yql", "node", "json-stringify", "json-parse", function(Y) {
     	}
     };
     Y.one('#main').delegate('click', productSearch, '.productSearch');    
-    Y.on("click", normalView, [".back"]);
-    Y.on("click", settingsView, [".setting"]);
-    Y.on("click", searchView, [".search"]);
+
     Y.on("click", search, ["#searchBtn"]);
-    Y.on("click", favoritesView, ['.fav']);
-    Y.on("click", aboutView, ['.about']);
     Y.on("click", favoriteItem, ['.favorite']);
     window.addEventListener("hashchange", hashChange, false); 
     /*var loadFavs = function () {
