@@ -28,7 +28,7 @@ YUI().use("yql", "node", "json-stringify", "json-parse", function(Y) {
       	    //console.log(extractedProducts);
       	    for (z in extractedProducts) {
       	    	//only show product results higher then 3 characters
-      	    	if(extractedProducts[z].length > 2) {
+      	    	if(extractedProducts[z].length > 2 && extractedProducts[z] != 'free shipping') {
       	    	     productCt++;
       	             productList += '<button class="productSearch">' + extractedProducts[z] + '</button>';
       	        }
@@ -121,7 +121,7 @@ YUI().use("yql", "node", "json-stringify", "json-parse", function(Y) {
     	}
     }();*/
     var loadFeed = function () {
-    	res.set('innerHTML', '<img src="images/loader.gif">');
+    	res.set('innerHTML', '<img src="images/loader.gif" id="loader">');
     	//run search
     	if (searchField.value == '') {
     	     var srcStr = 'http://pipes.yahoo.com/zomie/dealwad?_render=json';

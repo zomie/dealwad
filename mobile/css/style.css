@@ -12,6 +12,9 @@ body {
 #container {
 	margin-bottom:101px;
 }
+#loader {
+	margin:20% 35%;
+}
 .description {
 	display:none;
 }
@@ -35,14 +38,12 @@ body {
 	    left top,
 	    left bottom,
 	    color-stop(0, #FFFFFF),
-	    color-stop(1, #F1F1F1),
-	    color-stop(0.97, #14181B)
+	    color-stop(1, #F1F1F1)
 	);
 	background-image: -moz-linear-gradient(
 	    center top,
 	    #FFFFFF 0%,
-	    #F1F1F1 100%,
-	    #14181B 97%
+	    #F1F1F1 100%
 	);
 
 
@@ -57,14 +58,12 @@ body {
 	    left top,
 	    left bottom,
 	    color-stop(0, #FFFFFF),
-	    color-stop(1, #F7F7F7),
-	    color-stop(0.97, #14181B)
+	    color-stop(1, #F7F7F7)
 	);
 	background-image: -moz-linear-gradient(
 	    center top,
 	    #FFFFFF 0%,
-	    #F7F7F7 100%,
-	    #14181B 97%
+	    #F7F7F7 100%
 	);
 }
 .headline span, .description h4 span{
@@ -88,26 +87,27 @@ button {
 .viewHome .subnav {
 	clear:left;
 }
-.viewHome #settings, .viewHome .description, .viewHome .searchnav, .viewHome #search, .viewHome #favorites, .viewHome #about {
+/* hide show body elements */
+.viewHome #settings, .viewHome .description, .viewHome .searchnav, .viewHome #search, .viewHome #favorites, .viewHome #about, .viewHome .subnav {
 	display:none;
 }
 .viewItem #settings, .viewItem .headline, .viewItem #search, .viewItem #favorites, .viewItem #about {
 	display:none;
 }
-.viewSettings #main, .viewSettings #search, .viewSettings #favorites, .viewSettings #about {
+.viewSettings #main, .viewSettings #search, .viewSettings #favorites, .viewSettings #about, .viewSettings .subnav {
 	display:none;
 }
-.viewSearch #settings, .viewSearch #favorites, .viewSearch #about {
+.viewSearch #settings, .viewSearch #favorites, .viewSearch #about, .viewSearch .subnav {
 	display:none;
 }
-.viewFavorites #settings, .viewFavorites #main, .viewFavorites #search, .viewFavorites #main, .viewFavorites #about {
+.viewFavorites #settings, .viewFavorites #main, .viewFavorites #search, .viewFavorites #main, .viewFavorites #about, .viewFavorites .subnav {
 	display:none;
 }
-.viewAbout #settings, .viewAbout #main, .viewAbout #search, .viewAbout #main, .viewAbout #favorites{
+.viewAbout #settings, .viewAbout #main, .viewAbout #search, .viewAbout #main, .viewAbout #favorites, .viewAbout .subnav{
 	display:none;
 }
 header {
-	padding:1%;
+	padding: 5% 2%;
 	display:block;
 	text-align:center;
 	background:#0f1316;
@@ -115,33 +115,50 @@ header {
 	position:fixed;
 	bottom:0;
 	z-index:2;
+	height:65px;
 }
-header a {
+.viewItem footer {
+	padding: 1%;
+	display:block;
+	text-align:center;
+	background:#0f1316;
+	width:100%;
+	position:fixed;
+	top:0;
+	z-index:2;
+}
+.viewItem #main {
+	margin-top:50px;
+}
+header a, .viewItem footer a {
 	float:left;
 	text-align:center;
 	font-size:78%;
 	color:#85888d;
 	text-decoration:none;
 	font-weight:bold;
+	width:100%;
 	
 }
 
 header a span {
+	margin: 0 auto 2px;
 	display:block;
 	height: 52px;
 	width: 52px;
-	margin-bottom:2px
 }
-.subnav a span {
+footer a span {
 	height: 26px;
 	width: 26px;
+	display: block;
+    	margin: 0 auto 2px;
 }
 .subnav li {
 	width:33%;
 	float:left;
 }
 
-header a:hover {
+header a:hover , .viewItem footer a:hover{
 	color:#156025;
 	text-decoration:underline;
 }
