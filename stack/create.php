@@ -1,12 +1,10 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('log_errors', 1);
-ini_set('error_log', dirname(__FILE__) . '/error_log.txt');
-error_reporting(E_ALL);
+
 //just contains mysql connection method with user/pass
 include 'connect.php';
 
 mysql_select_db("stacker", $connect) or die(mysql_error());
+//create table stacker in the db stacker
 $sql = "CREATE TABLE stacker
 (
 pid INT(8) NOT NULL AUTO_INCREMENT,
