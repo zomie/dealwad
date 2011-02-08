@@ -4,12 +4,8 @@
 //http://net.tutsplus.com/tutorials/php/object-oriented-php-for-beginners/
 //http://www.freewebmasterhelp.com/tutorials/phpmysq
 
-//just contains mysql connection method with user/pass
-include 'connect.php';
-
-//TODO:
-//abstract out some of the mysql work
-//move the db connect into a local method
+//include parent sql class
+include 'Sql.php';
 
 
 /*
@@ -18,14 +14,13 @@ include 'connect.php';
  * It contains methods to show the stack, to push to the stack, and to pop a record off of the stack
 */
 
-class Stacker {
+class Stacker extends Sql{
 
 	//function pop
 	//Grabs the last record in the table stores it to be returned and then deletes that record
 	public static function pop() {
 		$query = "SELECT * FROM stacker ORDER BY createdAt DESC LIMIT 1";
-		mysql_select_db("stacker", $GLOBALS['connect']);
-		$result = mysql_query($query, $GLOBALS['connect']) or die(mysql_error());
+		$result = parent::executeQuery($query);
 		$stack = '';
 		$pid = 0;
 		while($row = mysql_fetch_array($result)) {
@@ -35,7 +30,7 @@ class Stacker {
 
 		//remove that record
 		$delete = "DELETE FROM stacker WHERE pid = " . $pid;
-		mysql_query($delete, $GLOBALS['connect']) or die(mysql_error());
+		parent::executeQuery($delete);
 
 		//return the last item in the stack
 		return $stack;
@@ -47,9 +42,7 @@ class Stacker {
 	public static function push($item) {
 		//build query to insert into stacker table and have it clean the item param
 		$query = "INSERT INTO stacker VALUES ('', '" . strip_tags($item) . "', NOW())";
-		mysql_select_db("stacker", $GLOBALS['connect']);
-		mysql_query($query, $GLOBALS['connect']) or die(mysql_error());
-		//mysql_close($GLOBALS['connect']);
+		parent::executeQuery($query);
 	}
 
 	//function show
@@ -57,8 +50,7 @@ class Stacker {
 	//and returns it as a ul
 	public static function show() {
 		$query = "SELECT * FROM stacker ORDER BY createdAt DESC";
-		mysql_select_db("stacker", $GLOBALS['connect']);
-		$result = mysql_query($query, $GLOBALS['connect']) or die(mysql_error());
+		$result = parent::executeQuery($query);
 		$stack = '<h3>The Stack</h3><ul>';
 		while($row = mysql_fetch_array($result)) {
 		  	$stack .= "<li>" . $row['stackStr'] . "</li>";
