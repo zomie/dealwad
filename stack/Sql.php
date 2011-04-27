@@ -1,3 +1,4 @@
+
 <?php
 //just contains user/pass/db vars to be accessed which should not be checked in
 include 'connect.php';
